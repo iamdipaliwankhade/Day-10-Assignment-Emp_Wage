@@ -5,25 +5,22 @@ package com.employeewage;
  */
 public class EmployeeWage {
 	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation program");
 
-		System.out.println("Welcome to Employee Wage Computation Program.");
+		int IS_FULL_TIME = 1;
+		int wagePerHour = 20;
+		int fullDayHour = 8;
+		int partTimeHour = 4;
 
-		int isPresent = 1;
-		int empRatePerHr = 20;
-		int workinghr;
-		int salary;
-
-		double randomCheck = Math.floor(Math.random() * 10) % 2;
-		if (isPresent == randomCheck) {
+		double empCheck = Math.floor(Math.random() * 10) % 3;
+		if (empCheck == IS_FULL_TIME) {
 			System.out.println("Employee is present");
-			workinghr = 8;
+			System.out.println("Employee daily wage=" + fullDayHour * wagePerHour);
+		} else if (empCheck == 0) {
+			System.out.println("Employee is absent");
 		} else {
-			System.out.println("Employee is Absent");
-			workinghr = 0;
+			System.out.println("Employee working as a part time");
+			System.out.println("Employee part time wage :" + partTimeHour * wagePerHour);
 		}
-
-		salary = empRatePerHr * workinghr;
-		System.out.println("Employee daily wage :" + salary);
-
 	}
 }
