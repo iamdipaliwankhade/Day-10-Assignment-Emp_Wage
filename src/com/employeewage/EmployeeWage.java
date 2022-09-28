@@ -8,16 +8,22 @@ public class EmployeeWage {
 
 		System.out.println("Welcome to Employee Wage Computation Program.");
 
-		int IS_FULL_TIME = 1;
+		int isPresent = 1;
+		int empRatePerHr = 20;
+		int workinghr;
+		int salary;
 
-		double empCheck = Math.floor(Math.random() * 10) % 2;
-
-		if (empCheck == IS_FULL_TIME)
-
-			System.out.println("Employee is Present");
-		else
-
+		double randomCheck = Math.floor(Math.random() * 10) % 2;
+		if (isPresent == randomCheck) {
+			System.out.println("Employee is present");
+			workinghr = 8;
+		} else {
 			System.out.println("Employee is Absent");
+			workinghr = 0;
+		}
+
+		salary = empRatePerHr * workinghr;
+		System.out.println("Employee daily wage :" + salary);
 
 	}
 }
