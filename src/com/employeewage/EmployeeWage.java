@@ -4,41 +4,52 @@ package com.employeewage;
  * @param args
  */
 public class EmployeeWage {
-	int wagePerHour = 20;
-	int fullTimeHour = 8;
-	int partTimeHour = 4;
-	int workingDayPerMonth = 20;
-	int totalWorkingHour = 100;
-	int totalEmpHour = 0;
-	int totalWorkingDays = 0;
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
 
-	public void computeEmpWage() {
-		while (totalEmpHour < totalWorkingHour && totalWorkingDays < workingDayPerMonth) {
+	public static int computeEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+
+		int empHrs = 0;
+		int totalEmpHrs = 0;
+		int totalWorkingDays = 0;
+
+		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
 			totalWorkingDays++;
-			int isPresent = (int) Math.floor(Math.random() * 10) % 3;
-			switch (isPresent) {
-			case 0:
-				System.out.println("Employee is present");
-				totalEmpHour += fullTimeHour;
-				break;
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			switch (empCheck) {
+
 			case 1:
-				System.out.println("Employee is present as a part time");
-				totalEmpHour += partTimeHour;
+				IS_PART_TIME: empHrs = 4;
 				break;
+
 			case 2:
-				System.out.println("Employee is absent");
-				totalEmpHour += 0;
+				IS_FULL_TIME: empHrs = 8;
 				break;
+			default:
+				empHrs = 0;
+
 			}
+
+			totalEmpHrs += empHrs;
+			System.out.println("Day: " + totalWorkingDays + " Emp Hr: " + empHrs);
+
 		}
-		System.out.println("Monthly Wage : " + totalEmpHour * wagePerHour);
+
+		int totalEmpWage = totalEmpHrs * empRatePerHour;
+		System.out.println("Total Emp Wage for Company: " + company + " is: " + totalEmpWage);
+		return totalEmpWage;
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation program");
+		System.out.println("Welcome to Employee Wage Computation Program for multiple companies");
 
-		EmployeeWage employeeWage = new EmployeeWage();
+		computeEmpWage("WIPRO", 8, 8, 30);
 
-		employeeWage.computeEmpWage();
+		computeEmpWage("BRIDGLABZ", 12, 8, 40);
+
+		computeEmpWage("TCS", 18, 50, 30);
+
+		computeEmpWage("TATA", 12, 30, 10);
+
 	}
 }
